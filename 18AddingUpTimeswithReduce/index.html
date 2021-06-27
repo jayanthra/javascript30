@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Videos</title>
+</head>
+
+<body>
+  <style>
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .video {
+      display: flex;
+      margin: 12px;
+      border: 1px solid grey;
+      border-radius: 5px;
+      max-width: 300px;
+      align-items: center;
+
+    }
+
+    .video .img-holder {
+      position: relative;
+    }
+
+    .time {
+      position: absolute;
+      background: black;
+      right: 5px;
+      bottom: 10px;
+      padding: 3px;
+      color: whitesmoke;
+      font-size: 12px;
+    }
+
+    .title {
+      font-size: 22px;
+      font-weight: bold;
+      margin-left: 12px;
+    }
+  </style>
+  <h1 id="total"></h1>
+  <ul class="videos">
+  </ul>
+  <script>
+
+    function getRandomTitle(length) {
+      let result = ''
+      const characters = 'abcdefghijklmnopqrstuvwxyz'
+      let charactersLength = characters.length
+      for (let i = 0; i < length; i++) {
+        result += characters.charAt(Math.floor(Math.random() *
+          charactersLength))
+      }
+      return result
+    }
+
+    function randomTime() {
+      let min = Math.floor(Math.random() * 14)
+      let sec = String(Math.floor(Math.random() * 59)).padStart(2, '0')
+      return `${min}:${sec}`
+    }
+
+    function renderList(videos) {
+      const videoList = document.querySelector('.videos')
+
+
+      videoList.innerHTML = videos.map((video, i) => {
+        return `
+        <li class="video" data-time="${video.time}">
+          <div class="img-holder">
+            <img src="${video.image}" alt="">
+            <span class="time">${video.time}</span>
+          </div>
+          <p class="title">${video.title}</p>
+        </li>
+      `
+      }).join('')
+
+      const timeNodes = [...document.querySelectorAll('[data-time]')]
+      console.log(timeNodes)
+      const seconds = timeNodes
+        .map(node => node.dataset.time)
+        .map(timeCode => {
+          const [mins, secs] = timeCode.split(':').map(parseFloat)
+          return (mins * 60) + secs
+        })
+        .reduce((total, vidSeconds) => total + vidSeconds)
+
+      let secondsLeft = seconds
+      const hours = Math.floor(secondsLeft / 3600)
+      secondsLeft = secondsLeft % 3600
+
+      const mins = Math.floor(secondsLeft / 60)
+      secondsLeft = secondsLeft % 60
+
+      let title = document.getElementById('total')
+      title.textContent = `${hours} Hours, ${mins} Mins, ${secondsLeft}Secs`
+      console.log(hours, mins, secondsLeft)
+    }
+
+    function createVideos() {
+      const videoList = []
+      for (let i = 0; i < 50; i++) {
+        const video = {
+          image: `https://picsum.photos/seed/${getRandomTitle(4)}/120/100`,
+          title: titleGenerator(),
+          time: randomTime()
+        }
+        videoList.push(video)
+      }
+      renderList(videoList)
+    }
+
+    createVideos()
+
+
+    function titleGenerator() {
+      const one = [
+        'Web',
+        'Internet',
+        'Senior',
+        'Lead',
+        'Professional',
+        'Junior',
+        'Google',
+        'Yahoo',
+        'Flash',
+        'Homepage',
+        'Creative',
+        'Future',
+        'Dreamweaver',
+        'Photoshop',
+        'Joomla',
+        'Frontpage',
+        'HTML',
+        'CSS',
+        'Responsive',
+        'WordPress',
+        'CodePen',
+        'Dribbble',
+        'Internet Explorer',
+        'GitHub',
+        'Office',
+        'Reddit',
+        'NULL',
+        'Undefined',
+        'Error',
+        'IT',
+        'Marketing',
+        'SEO',
+        'Java',
+        'C',
+        'C++',
+        'PHP',
+        'Python',
+        'Ruby',
+        'SQL',
+        'JavaScript',
+        'Frontend',
+        'Backend',
+        'Chrome',
+        'Safari',
+        'Firefox',
+        'Twitter',
+        'HackerNews',
+        'Social',
+        'Linux',
+        'Mac',
+        'Windows',
+        'Android',
+        'iOS',
+        'Hashtag',
+        'Sidebar',
+        'cssdeck',
+        'JSFiddle',
+        'jQuery',
+        'Microsoft',
+        'Ubuntu',
+        'Generator',
+        'Job Title Generator',
+        'bullgit',
+        '4ae9b8',
+        'Kickstarter',
+        'ebay',
+        'Facebook',
+        'Google+',
+        'SCSS',
+        'SASS',
+        'LESS',
+        'Stylus',
+        'Coderwall',
+        'Coderbits',
+        'Mobile',
+        'User Experience',
+        'Soundcloud',
+        'Node.js',
+        'AngularJS',
+        'Backbone',
+        'React',
+        'MongoDB',
+        'YouTube',
+        'Sublime Text',
+        'Firefox OS',
+        'Wikipedia',
+        'Nerd',
+        'Geek',
+        'LinkedIn'
+      ]
+
+      const two = [
+        'Expert',
+        'Coffee Maker',
+        'File Uploader',
+        'Pizza Reheater',
+        'Admin',
+        'Search Expert',
+        'Slayer',
+        'Guru',
+        'Designer',
+        'Mastermind',
+        'Millionaire',
+        'RockStar',
+        'Evangelist',
+        'Master',
+        'Celebrity',
+        'Optimizer',
+        'Bitch',
+        'Hacker',
+        'Dev',
+        'Craftsman',
+        'Jedi',
+        'Sithlord',
+        'Person',
+        'Tweeter',
+        'Slut',
+        'Dick',
+        'Boss',
+        'CTO',
+        'Lady',
+        'Pirate',
+        'Captain',
+        'Legend',
+        'Ninja',
+        'Zombie',
+        'King',
+        'Supporter',
+        'Manager',
+        'Director',
+        'Consultant',
+        'Strategist',
+        'Agent',
+        'Wizard',
+      ]
+
+      const three = [
+        'Über',
+        'Ultra',
+        'Freaking',
+        'Holy',
+        'Only the best',
+        'Awesome',
+        '+1',
+        '♥',
+        'Insane',
+        'First Class',
+        'Unbelievable',
+        'Gorgeous',
+        'Beautiful',
+        '★',
+        '#1',
+        'Hot',
+        'One in a million',
+        'Slick',
+        'Brilliant',
+        'Cute',
+        'Nice',
+        'Perfect'
+      ]
+
+      let first = Math.floor(Math.random() * 89)
+      let second = Math.floor(Math.random() * 42)
+      let third = Math.floor(Math.random() * 22)
+
+      return three[third] + ' ' + one[first] + ' ' + two[second]
+
+    }
+
+
+
+  </script>
+</body>
+
+</html>

@@ -1,66 +1,236 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
+<style>
+  body {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    padding: 20px;
+    background: rgb(241, 241, 241);
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  h3 {
+    font-size: 25px;
+    color: #252423;
+    text-align: center;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  li {
+    margin: 25px;
+  }
+
+  a {
+    color: #55556d;
+    font-size: 20px;
+    font-style: none;
+    text-decoration: none;
+    width: 380px;
+    display: block;
+    position: relative;
+  }
+
+  a:hover .item-container {
+    transition: 0.1s ease-in-out;
+    transform: skewX(-5deg);
+  }
+
+  .item-container {
+    display: flex;
+    width: 300px;
+    margin: auto;
+    align-items: center;
+    height: 80px;
+    transform: skewX(0deg);
+    transition: 0.1s ease-in-out;
+  }
+
+  .item-container .number {
+    font-size: 40px;
+    color: white;
+    font-weight: bold;
+    padding: 0;
+    margin: 0;
+    background: indianred;
+    padding: 10px 20px;
+    border-radius: 25px 0 0;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+  }
+
+  .item-container .title {
+    text-align: center;
+    width: 100%;
+    background: white;
+    padding: 0;
+    margin: 0;
+    border-radius: 0 25px 0 0;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    justify-content: center;
+  }
+
+  a .footer {
+    background: url('shadow.png');
+    height: 30px;
+    width: 100%;
+    z-index: 10;
+    width: 380px;
+    bottom: 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    background-position: bottom;
+  }
+</style>
+
 <body>
+  <h3>Javascript 30</h3>
   <ul>
-    <li>
-      <a href="/01JavaScriptDrumKit/index.html">Drumkit</a>
-    </li>
-    <li>
-      <a href="/02JSClock/index.html">JS Clock</a>
-    </li>
-    <li>
-      <a href="/03CSSVariables/index.html">CSS variables</a>
-    </li>
-    <li>
-      <a href="/04ArrayCardioDay1/index.html">Array cardio</a>
-    </li>
-    <li>
-      <a href="/05FlexPanelGallery/index.html">Flex panel gallery</a>
-    </li>
-    <li>
-      <a href="/06TypeAhead/index.html">Type ahead</a>
-    </li>
-    <li>
-      <a href="/07ArrayCardioDay2/index.html">Array Cardio Day2</a>
-    </li>
-    <li>
-      <a href="/08FunwithHTML5Canvas/index.html">Fun with HTML5 Canvas</a>
-    </li>
-    <li>
-      <a href="/09DevToolsDomination/index.html">Dev tools</a>
-    </li>
-    <li>
-      <a href="/10HoldShiftAndCheckCheckboxes/index.html">Shift and hold</a>
-    </li>
-    <li>
-      <a href="/11CustomVideoPlayer/index.html">Custom video player</a>
-    </li>
-    <li>
-      <a href="/12KeySequenceDetection/index.html">Keysequence detection</a>
-    </li>
-    <li>
-      <a href="/13SlideInOnScroll/index.html">Slide in on scroll</a>
-    </li>
-    <li>
-      <a href="/14JavaScriptReferencesVSCopying/index.html">Reference vs Copy</a>
-    </li>
-    <li>
-      <a href="/15LocalStorage/index.html">Local storage</a>
-    </li>
-    <li>
-      <a href="/16MouseMoveShadow/index.html">Mouse move shadow</a>
-    </li>
-    <li>
-      <a href="/17SortWithoutArticles/index.html">Sort without articles</a>
-    </li>
-    <li>
-      <a href="/18AddingUpTimeswithReduce/index.html">Add up time</a>
-    </li>
   </ul>
+
+  <script>
+
+    const topics = [
+      {
+        link: '/01JavaScriptDrumKit/index.html',
+        title: 'Drumkit',
+        color: '#ffbb34',
+      },
+      {
+        link: '/02JSClock/index.html',
+        title: 'JS Clock',
+        color: '#e52d69',
+      },
+      {
+        link: '/03CSSVariables/index.html',
+        title: 'CSS variables',
+        color: '#2eb4e7',
+      },
+      {
+        link: '/04ArrayCardioDay1/index.html',
+        title: 'Array cardio 1',
+        color: '#3ecc68',
+      },
+      {
+        link: '/05FlexPanelGallery/index.html',
+        title: 'Flex Panel Gallery',
+        color: '#cd3d3d',
+      },
+      {
+        link: '/06TypeAhead/index.html',
+        title: 'Type Ahead',
+        color: '#cb28a1',
+      },
+      {
+        link: '/07ArrayCardioDay2/index.html',
+        title: 'Array cardio 2',
+        color: '#ff9933',
+      },
+      {
+        link: '/08FunwithHTML5Canvas/index.html',
+        title: 'HTML canvas',
+        color: '#2a82da',
+      },
+      {
+        link: '/09DevToolsDomination/index.html',
+        title: 'Dev tools',
+        color: '#41d9a6',
+      },
+      {
+        link: '/10HoldShiftAndCheckCheckboxes/index.html',
+        title: 'Hold shift copy',
+        color: '#ffbb34',
+      },
+      {
+        link: '/11CustomVideoPlayer/index.html',
+        title: 'Custom video player',
+        color: '#e52d69',
+      },
+      {
+        link: '/12KeySequenceDetection/index.html',
+        title: 'Key sequence detection',
+        color: '#2eb4e7',
+      },
+      {
+        link: '/13SlideInOnScroll/index.html',
+        title: 'Slide in on scroll',
+        color: '#3ecc68',
+      },
+      {
+        link: '/14JavaScriptReferencesVSCopying/index.html',
+        title: 'Reference vs Copy',
+        color: '#cd3d3d',
+      },
+      {
+        link: '/15LocalStorage/index.html',
+        title: 'Local storage',
+        color: '#cb28a1',
+      },
+      {
+        link: '/16MouseMoveShadow/index.html',
+        title: 'Mouse move shadow',
+        color: '#ff9933',
+      },
+      {
+        link: '/17SortWithoutArticles/index.html',
+        title: 'Sort without articles',
+        color: '#2a82da',
+      },
+      {
+        link: '/18AddingUpTimeswithReduce/index.html',
+        title: 'Adding up time',
+        color: '#41d9a6',
+      },
+      {
+        link: '/19WebcamFun/index.html',
+        title: 'Webcam Fun',
+        color: '#ffbb34',
+      }
+    ]
+
+
+    function createList() {
+      const list = document.querySelector('ul')
+      list.innerHTML = topics.map((item, index) => {
+        return `
+        <li>
+          <a href="${item.link}">
+            <div class="item-container">
+              <div class="number" style="background: ${item.color};">
+                ${String(++index).padStart(2, '0')}
+              </div>
+              <div class="title">
+                <p>${item.title}</p>
+              </div>
+            </div>
+            <div class="footer"></div>
+          </a>
+        </li>
+        `
+      }).join('')
+
+
+    }
+
+    createList()
+  </script>
 </body>
+
 </html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Understanding JavaScript's Capture</title>
+</head>
+
+<body class="bod">
+
+  <div class="one">
+    <h2>ONE</h2>
+    <div class="two">
+      <h2>TWO</h2>
+      <div class="three">
+        <h2>THREE</h2>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="options">
+    <input type="checkbox" id="stopProp" name="stopProp" checked>
+    <label for="stopProp">STOP PROPOGATION</label>
+  </div>
+
+
+  <div class="options">
+    <input type="checkbox" id="bubble" name="bubble" checked>
+    <label for="bubble">EVENT BUBBLE</label>
+  </div>
+
+  <style>
+    html {
+      box-sizing: border-box;
+    }
+
+    *,
+    *:before,
+    *:after {
+      box-sizing: inherit;
+    }
+
+    div {
+      width: 100%;
+      padding: 70px;
+    }
+
+    .options {
+      padding: 20px;
+      border: 1px solid grey;
+    }
+
+    .one {
+      background: thistle;
+    }
+
+    .two {
+      background: mistyrose;
+    }
+
+    .three {
+      background: coral;
+    }
+
+    h2 {
+      text-align: center;
+    }
+  </style>
+
+
+  <script>
+    const divs = document.querySelectorAll('div')
+    const stopProp = document.getElementById('stopProp')
+    const bubble = document.getElementById('bubble')
+
+    function logText(e) {
+      if (stopProp.checked) {
+        e.stopPropagation()
+      }
+      console.log(this)
+    }
+
+    function createEvents(capture) {
+      divs.forEach(item => {
+        item.addEventListener('click', logText, {
+          capture
+        })
+      })
+    }
+
+    function removeEvents(capture) {
+      divs.forEach(item => {
+        item.addEventListener('click', logText, {
+          capture
+        })
+      })
+    }
+
+    createEvents(false)
+
+
+    function resetEvents() {
+      removeEvents(!bubble.checked)
+      createEvents(bubble.checked)
+    }
+
+    bubble.addEventListener('change', resetEvents)
+
+  </script>
+</body>
+
+</html>

@@ -26,12 +26,12 @@ function countDown(seconds) {
 
 function displayTimeLeft(seconds) {
   const minutes = Math.floor(seconds / 60);
-  const remainderSeconds = seconds % 60;
-
   const hours = Math.floor(seconds / 3600);
+
+  const remainderSeconds = String(seconds % 60).padStart(2, '0')
   const remainderMinutes = String(minutes % 60).padStart(2, '0');
 
-  const display = `${hours}:${remainderMinutes}:${remainderSeconds < 10 ? '0' : ''}${remainderSeconds}`;
+  const display = `${hours}:${remainderMinutes}:${remainderSeconds}`;
   document.title = display;
   timerDisplay.textContent = display;
 }
